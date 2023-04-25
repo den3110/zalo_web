@@ -15,7 +15,14 @@ import "react-toggle/style.css"
 import deaf_user from '../../api/user/deaf_user'
 import { useSnackbar } from 'notistack'
 import { SocketContainerContext } from '../../SocketContainer/SocketContainer'
+import UpdatePassword from './UpdatePassword'
+import { Dialog, Slide } from '@mui/material'
 
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
+
+  
 const DetailProfile = (props) => {
     const { enqueueSnackbar }= useSnackbar()
     const { socketState}= useContext(SocketContainerContext)
@@ -54,78 +61,86 @@ const DetailProfile = (props) => {
     }, [updateData, enqueueSnackbar])
     
   return (
-    <div className={"dsjdkjfkdlfjdmskdgm"} style={{width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center", position: "fixed", left: 0, top: 0, background: "rgba(0, 0, 0, 0.3)", zIndex: 999}}>
-        <OutsideClickHandler onOutsideClick={()=> props.setOpen(()=> false)}>
-            {/*  */}
-            {
-                updateInfo=== false && 
-                <div className={"DSkkjfkdjskljfdas"} style={{maxWidth: 450, width: "100vw", background: "#fff", padding: 10, borderRadius: 10}}>
-                    <div className={"jdjadkjgkddssa"} style={{width: '100%', height: 68, display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-                        <strong>Thông tin tài khoản</strong>
-                        <div style={{display: "flex", justifyContent: 'center', alignItems: "center", cursor: "pointer"}} onClick={()=> props.setOpen(()=> false)}>
-                            <GrClose />
-                        </div>
-                    </div>
-                    <CoverPhoto coverPhoto={data?.coverPicture} />
-                    <Avatar setChangeAvatar={setChangeAvatar} setOpen={()=> {}} avatar={newProfilePicture} />
-                    <NameProfile username={data?.username} />
-                    <ProfileInfo user={data} />
-                    <AdvancedSettings user={data} />
-                    <br />
-                    <div className={"fjldjskdjkslajkalsas"} style={{width: '100%', display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
-                        <Button variant={"primary"} onClick={()=> setUpdateInfo(()=> true)} className={"fjlkdjfklsdjdasas"} style={{display: 'flex', justifyContent:"center", alignItems: "center", background: "#2e89ff", cursor: "pointer", color: "#fff", fontWeight: 600, border: "none", outline: "none", borderRadius: 5, padding: "10px 30px", width :'100%'}}>
-                            Cập nhật thông tin 
-                        </Button>
-                        <br />
-                    </div>
-                </div> 
-            }
-            {/*  */}
-            {
-                updateInfo=== true &&
-                <div className={"fjdklsjdksaassajksa"} style={{maxWidth: 450, width: "100vw", background: "#fff", padding: 10, borderRadius: 10}}>
-                    <div className={"jdjadkjgkddssa"} style={{width: '100%', height: 68, display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-                        <strong>Cập nhật thông tin tài khoản</strong>
-                        <div style={{display: "flex", justifyContent: 'center', alignItems: "center", cursor: "pointer"}} onClick={()=> props.setOpen(()=> false)}>
-                            <GrClose />
-                        </div>
-                    </div>
-                    <CoverPhoto setChangeCoverPhoto={setChangeCoverPhoto} newCoverPhoto={newCoverPhoto} setNewCoverPhoto={setNewCoverPhoto} is_edit={true} coverPhoto={data?.coverPicture} />
-                    {/*  */}
-                    <Avatar setChangeAvatar={setChangeAvatar} setOpen={()=> {}} avatar={newProfilePicture} newProfilePicture={newProfilePicture} setNewProfilePicture={setNewProfilePicture} is_edit={true} />
-                   {/*  */}
-                    <ChangeUserName newUsername={newUsername} setNewUsername={setNewUsername} username={data?.username} />
-                   {/*  */}
-                    <UpdateInfo newGender={newGender} setNewGender={setNewGender} newAddress={newAddress} setNewAddress={setNewAddress} />
-                    <br />
-                    <div className={"fjldjskdjkslajkalsas"} style={{width: '100%', display: "flex", justifyContent: "center", alignItems: "center", gap :20}}>
-                        {
-                            updateData?.msg ? <>
-                                <button onClick={()=> props.setOpen(()=> false)} className={"fjlkdjfklsdjdasas"} style={{display: 'flex', justifyContent:"center", alignItems: "center", background: "#5555", cursor: "pointer", color: "#000", fontWeight: 600, border: "none", outline: "none", borderRadius: 5, padding: "10px 30px"}}>
-                                    Đóng
-                                </button>
 
-                            </>
-                            : 
-                            <>
-                                <button onClick={()=> props.setOpen(()=> false)} className={"fjlkdjfklsdjdasas"} style={{display: 'flex', justifyContent:"center", alignItems: "center", background: "#5555", cursor: "pointer", color: "#000", fontWeight: 600, border: "none", outline: "none", borderRadius: 5, padding: "10px 30px"}}>
-                                    Hủy
-                                </button>
-                                <button onClick={async ()=> {
-                                    const result= await update_info_user(Cookies.get("uid"), newUsername, newProfilePicture, newGender, setUpdateData, setData, changeAvatar, newCoverPhoto, changeCoverPhoto, newAddress)
-                                    if(result?.status=== 200) {
-                                        socketState?.emit("update_profile_user", {meId: Cookies.get("uid")})
-                                    }
-                                }} className={"fjlkdjfklsdjdasas"} style={{display: 'flex', justifyContent:"center", alignItems: "center", background: "#2e89ff", cursor: "pointer", color: "#fff", fontWeight: 600, border: "none", outline: "none", borderRadius: 5, padding: "10px 30px"}}>
-                                    Cập nhật
-                                </button>
-                            </>
-                        }
-                    </div>
-                </div>
-            }
-        </OutsideClickHandler>
-    </div>
+    <Dialog
+        open={props?.open}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={props?.handleClose}
+        aria-describedby="alert-dialog-slide-description"
+      >
+
+                    {/*  */}
+                    {
+                        updateInfo=== false && 
+                        <div className={"DSkkjfkdjskljfdas"} style={{maxWidth: 450, width: "100vw", background: "#fff", padding: 10, borderRadius: 10}}>
+                            <div className={"jdjadkjgkddssa"} style={{width: '100%', height: 68, display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+                                <strong>Thông tin tài khoản</strong>
+                                <div style={{display: "flex", justifyContent: 'center', alignItems: "center", cursor: "pointer"}} onClick={()=> props.setOpen(()=> false)}>
+                                    <GrClose />
+                                </div>
+                            </div>
+                            <CoverPhoto coverPhoto={data?.coverPicture} />
+                            <Avatar setChangeAvatar={setChangeAvatar} setOpen={()=> {}} avatar={newProfilePicture} />
+                            <NameProfile username={data?.username} />
+                            <ProfileInfo user={data} />
+                            <AdvancedSettings user={data} />
+                            <br />
+                            <div className={"fjldjskdjkslajkalsas"} style={{width: '100%', display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
+                                <Button variant={"primary"} onClick={()=> setUpdateInfo(()=> true)} className={"fjlkdjfklsdjdasas"} style={{display: 'flex', justifyContent:"center", alignItems: "center", background: "#2e89ff", cursor: "pointer", color: "#fff", fontWeight: 600, border: "none", outline: "none", borderRadius: 5, padding: "10px 30px", width :'100%'}}>
+                                    Cập nhật thông tin 
+                                </Button>
+                                <br />
+                            </div>
+                        </div> 
+                    }
+                    {/*  */}
+                    {
+                        updateInfo=== true &&
+                        <div className={"fjdklsjdksaassajksa"} style={{maxWidth: 450, width: "100vw", background: "#fff", padding: 10, borderRadius: 10}}>
+                            <div className={"jdjadkjgkddssa"} style={{width: '100%', height: 68, display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+                                <strong>Cập nhật thông tin tài khoản</strong>
+                                <div style={{display: "flex", justifyContent: 'center', alignItems: "center", cursor: "pointer"}} onClick={()=> props.setOpen(()=> false)}>
+                                    <GrClose />
+                                </div>
+                            </div>
+                            <CoverPhoto setChangeCoverPhoto={setChangeCoverPhoto} newCoverPhoto={newCoverPhoto} setNewCoverPhoto={setNewCoverPhoto} is_edit={true} coverPhoto={data?.coverPicture} />
+                            {/*  */}
+                            <Avatar setChangeAvatar={setChangeAvatar} setOpen={()=> {}} avatar={newProfilePicture} newProfilePicture={newProfilePicture} setNewProfilePicture={setNewProfilePicture} is_edit={true} />
+                        {/*  */}
+                            <ChangeUserName newUsername={newUsername} setNewUsername={setNewUsername} username={data?.username} />
+                        {/*  */}
+                            <UpdateInfo newGender={newGender} setNewGender={setNewGender} newAddress={newAddress} setNewAddress={setNewAddress} />
+                            <br />
+                                <UpdatePassword />
+                            <br />
+                            <div className={"fjldjskdjkslajkalsas"} style={{width: '100%', display: "flex", justifyContent: "center", alignItems: "center", gap :20}}>
+                                {
+                                    updateData?.msg ? <>
+                                        <button onClick={()=> props.setOpen(()=> false)} className={"fjlkdjfklsdjdasas"} style={{display: 'flex', justifyContent:"center", alignItems: "center", background: "#5555", cursor: "pointer", color: "#000", fontWeight: 600, border: "none", outline: "none", borderRadius: 5, padding: "10px 30px"}}>
+                                            Đóng
+                                        </button>
+
+                                    </>
+                                    : 
+                                    <>
+                                        <button onClick={()=> props.setOpen(()=> false)} className={"fjlkdjfklsdjdasas"} style={{display: 'flex', justifyContent:"center", alignItems: "center", background: "#5555", cursor: "pointer", color: "#000", fontWeight: 600, border: "none", outline: "none", borderRadius: 5, padding: "10px 30px"}}>
+                                            Hủy
+                                        </button>
+                                        <button onClick={async ()=> {
+                                            const result= await update_info_user(Cookies.get("uid"), newUsername, newProfilePicture, newGender, setUpdateData, setData, changeAvatar, newCoverPhoto, changeCoverPhoto, newAddress)
+                                            if(result?.status=== 200) {
+                                                socketState?.emit("update_profile_user", {meId: Cookies.get("uid")})
+                                            }
+                                        }} className={"fjlkdjfklsdjdasas"} style={{display: 'flex', justifyContent:"center", alignItems: "center", background: "#2e89ff", cursor: "pointer", color: "#fff", fontWeight: 600, border: "none", outline: "none", borderRadius: 5, padding: "10px 30px"}}>
+                                            Cập nhật
+                                        </button>
+                                    </>
+                                }
+                            </div>
+                        </div>
+                    }
+      </Dialog>
   )
 }
 

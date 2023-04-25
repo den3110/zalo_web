@@ -45,6 +45,9 @@ const Profile = () => {
     e.preventDefault()
     update_seen_request(Cookies.get("uid"), parseInt(newRequestFriends.length) + unSeenDefault)
   }
+  const handleClose= ()=> {
+    setOpen(()=>  false)
+  }
   return (
     <div className={"dkdjakdjskdasadsd"} style={{height: "100vh", width: 80}}>
       <div className={"dsjkdjaksljkfada"} style={{width: "100%", height: '100%', background: "#2e89ff", padding: "10px 0", display: "flex", justifyContent: "space-between", alignItems: "center", flexDirection: "column"}}>
@@ -52,8 +55,7 @@ const Profile = () => {
           {/* <button onClick={()=> setNewRequestFriends(prev=> prev+ 1)}>Click</button> */}
           <Avatar setOpen={setOpen} avatar={data?.profilePicture} />
           {
-            open=== true &&
-            <DetailProfile open={open} setOpen={setOpen} />
+            <DetailProfile open={open} handleClose={handleClose} />
           }
           <ToChatPage />
           <ToFriendPage newRequestFriends={newRequestFriends} setNewRequestFriends={setNewRequestFriends} unSeenDefault={unSeenDefault} setUnSeenDefault={setUnSeenDefault} />

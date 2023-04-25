@@ -82,6 +82,7 @@ export default function UpdatePassword() {
                 enqueueSnackbar("Mật khẩu mới không khớp, vui lòng thử lại", {
                   variant: "error",
                 });
+                return
               }
               try {
                 const result = await update_password(oldPassword, newPassword);

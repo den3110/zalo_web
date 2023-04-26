@@ -117,7 +117,7 @@ const DetailProfile = (props) => {
                             <div className={"fjldjskdjkslajkalsas"} style={{width: '100%', display: "flex", justifyContent: "center", alignItems: "center", gap :20}}>
                                 {
                                     updateData?.msg ? <>
-                                        <button onClick={()=> props.handleClose()} className={"fjlkdjfklsdjdasas"} style={{display: 'flex', justifyContent:"center", alignItems: "center", background: "#5555", cursor: "pointer", color: "#000", fontWeight: 600, border: "none", outline: "none", borderRadius: 5, padding: "10px 30px"}}>
+                                        <button onClick={()=> {props.handleClose(); setUpdateInfo(()=> true)}} className={"fjlkdjfklsdjdasas"} style={{display: 'flex', justifyContent:"center", alignItems: "center", background: "#5555", cursor: "pointer", color: "#000", fontWeight: 600, border: "none", outline: "none", borderRadius: 5, padding: "10px 30px"}}>
                                             Đóng
                                         </button>
 

@@ -42,7 +42,7 @@ const ForgotPassword = (props) => {
             >
               Quên mật khẩu <br></br>
             </div>
-            <div action="#">
+            <form action="#">
               {!result && (
                 <>
                   <div className={styles.register_form_input}>
@@ -183,7 +183,7 @@ const ForgotPassword = (props) => {
                   <WrongCode status={status} />
                 </div>
               )}
-            </div>
+            </form>
           </>
         }
       </div>

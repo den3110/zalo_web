@@ -59,9 +59,9 @@ const Signup = () => {
         {
           <>
             <div className={styles.register_title} style={{ marginBottom: 20, fontSize: 18 }}>
-              Đăng ký tài khoản tin nhắn nhanh <br></br>để kết nối với ứng dụng tin nhắn nhanh
+              Đăng ký tài khoản Chat NPD <br></br>để kết nối với ứng dụng Chat NPD
             </div>
-            <form action="#">
+            <div className={styles["formxx"]} action="#">
               {message === true && (
                 <>
                   {checkFinal && (
@@ -236,9 +236,9 @@ const Signup = () => {
               )}
 
               <div className={styles.toLogin}>
-                <Link style={{fontSize: 16}} to="/login">Đăng nhập!</Link>
+                <Link style={{fontSize: 16}} to="/login">Đăng nhập</Link>
               </div>
-            </form>
+            </div>
           </>
         }
       </div>

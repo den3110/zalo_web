@@ -28,7 +28,7 @@ const Login = (props) => {
               Đăng nhập tài khoản tin nhắn nhanh <br></br>để kết nối với ứng dụng tin nhắn nhanh
               ChatNPD
             </div>
-            <div action="#">
+            <div className={styles["formxx"]} action="#">
               <div className={styles.register_form_input}>
                 <input
                   type="text"

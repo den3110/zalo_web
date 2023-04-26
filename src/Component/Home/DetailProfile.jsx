@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import OutsideClickHandler from 'react-outside-click-handler'
+// import OutsideClickHandler from 'react-outside-click-handler'
 import {GrClose } from "react-icons/gr"
 import CoverPhoto from './CoverPhoto'
 import Avatar from './Avatar'
@@ -76,7 +76,7 @@ const DetailProfile = (props) => {
                         <div className={"DSkkjfkdjskljfdas"} style={{maxWidth: 450, width: "100vw", background: "#fff", padding: 10, borderRadius: 10}}>
                             <div className={"jdjadkjgkddssa"} style={{width: '100%', height: 68, display: "flex", justifyContent: "space-between", alignItems: "center"}}>
                                 <strong>Thông tin tài khoản</strong>
-                                <div style={{display: "flex", justifyContent: 'center', alignItems: "center", cursor: "pointer"}} onClick={()=> props.setOpen(()=> false)}>
+                                <div style={{display: "flex", justifyContent: 'center', alignItems: "center", cursor: "pointer"}} onClick={()=> props.handleClose()}>
                                     <GrClose />
                                 </div>
                             </div>
@@ -100,7 +100,7 @@ const DetailProfile = (props) => {
                         <div className={"fjdklsjdksaassajksa"} style={{maxWidth: 450, width: "100vw", background: "#fff", padding: 10, borderRadius: 10}}>
                             <div className={"jdjadkjgkddssa"} style={{width: '100%', height: 68, display: "flex", justifyContent: "space-between", alignItems: "center"}}>
                                 <strong>Cập nhật thông tin tài khoản</strong>
-                                <div style={{display: "flex", justifyContent: 'center', alignItems: "center", cursor: "pointer"}} onClick={()=> props.setOpen(()=> false)}>
+                                <div style={{display: "flex", justifyContent: 'center', alignItems: "center", cursor: "pointer"}} onClick={()=> props.handleClose()}>
                                     <GrClose />
                                 </div>
                             </div>
@@ -117,14 +117,14 @@ const DetailProfile = (props) => {
                             <div className={"fjldjskdjkslajkalsas"} style={{width: '100%', display: "flex", justifyContent: "center", alignItems: "center", gap :20}}>
                                 {
                                     updateData?.msg ? <>
-                                        <button onClick={()=> props.setOpen(()=> false)} className={"fjlkdjfklsdjdasas"} style={{display: 'flex', justifyContent:"center", alignItems: "center", background: "#5555", cursor: "pointer", color: "#000", fontWeight: 600, border: "none", outline: "none", borderRadius: 5, padding: "10px 30px"}}>
+                                        <button onClick={()=> props.handleClose()} className={"fjlkdjfklsdjdasas"} style={{display: 'flex', justifyContent:"center", alignItems: "center", background: "#5555", cursor: "pointer", color: "#000", fontWeight: 600, border: "none", outline: "none", borderRadius: 5, padding: "10px 30px"}}>
                                             Đóng
                                         </button>
 
                                     </>
                                     : 
                                     <>
-                                        <button onClick={()=> props.setOpen(()=> false)} className={"fjlkdjfklsdjdasas"} style={{display: 'flex', justifyContent:"center", alignItems: "center", background: "#5555", cursor: "pointer", color: "#000", fontWeight: 600, border: "none", outline: "none", borderRadius: 5, padding: "10px 30px"}}>
+                                        <button onClick={()=> setUpdateInfo(()=> false)} className={"fjlkdjfklsdjdasas"} style={{display: 'flex', justifyContent:"center", alignItems: "center", background: "#5555", cursor: "pointer", color: "#000", fontWeight: 600, border: "none", outline: "none", borderRadius: 5, padding: "10px 30px"}}>
                                             Hủy
                                         </button>
                                         <button onClick={async ()=> {

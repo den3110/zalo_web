@@ -28,7 +28,7 @@ const Login = (props) => {
               Đăng nhập tài khoản tin nhắn nhanh <br></br>để kết nối với ứng dụng tin nhắn nhanh
               ChatNPD
             </div>
-            <form action="#">
+            <div action="#">
               <div className={styles.register_form_input}>
                 <input
                   type="text"
@@ -83,7 +83,7 @@ const Login = (props) => {
               <div className={styles.toLogin}>
                 <Link style={{fontSize: 16}} to="/signup">Đăng ký</Link>
               </div>
-            </form>
+            </div>
           </>
         }
       </div>

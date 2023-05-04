@@ -13,7 +13,7 @@ const MainScreen = () => {
       <Routes>
         <Route path={"/*"} element={<Navigate to={"/"} replace={true} />} />
         {
-          data?.lastConversationId &&
+          data?.lastConversationId?.length> 0 &&
           <>
             { 
             auth=== true && <Route path={"/"} element={<Navigate to={"/chat/"+data?.lastConversationId} replace={true} />} />
@@ -21,10 +21,10 @@ const MainScreen = () => {
           </>
         }
         {
-          !data?.lastConversationId &&
+          (!data?.lastConversationId || data?.lastConversationId?.length <= 0) &&
           <>
             { 
-            auth=== true && <Route path={"/"} element={<Navigate to={"/chat/"} replace={true} />} />
+            auth=== true && <Route path={"/"} element={<Navigate to={"/chat/t"} replace={true} />} />
           }
           </>
         }

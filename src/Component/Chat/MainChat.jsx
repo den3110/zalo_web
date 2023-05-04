@@ -99,6 +99,7 @@ const MainChat = (props) => {
 
 export const TitleMainChat = memo((props) => {
   const [open, setOpen] = useState(false);
+  const {idConversation }= useParams()
   const { socketState } = useContext(SocketContainerContext);
   const { setInComingCall } = useContext(HomeContext);
   const callId = useMemo(() => v4().replaceAll("-", ""), []);
@@ -215,6 +216,7 @@ export const TitleMainChat = memo((props) => {
                 props?.setAudio(() => true);
                 props?.setVideo(() => false);
                 socketState.emit("start_call", {
+                  idConversation,
                   call_id: callId,
                   user_to_call: props?.member?.filter(
                     (item) => item?._id !== Cookies.get("uid")
@@ -246,6 +248,7 @@ export const TitleMainChat = memo((props) => {
                 props?.setAudio(() => true);
                 props?.setVideo(() => true);
                 socketState.emit("start_call", {
+                  idConversation,
                   call_id: callId,
                   user_to_call: props?.member?.filter(
                     (item) => item?._id !== Cookies.get("uid")

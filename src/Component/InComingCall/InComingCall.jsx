@@ -4,6 +4,8 @@ import { useContext } from 'react'
 import {AiOutlineClose} from "react-icons/ai"
 import { BsFillCameraVideoFill} from "react-icons/bs"
 import { SocketContainerContext } from '../../SocketContainer/SocketContainer'
+import { MobileView, isMobile } from 'react-device-detect';
+
 
 const InComingCall = (props) => {
   const {socketState }= useContext(SocketContainerContext)
@@ -32,7 +34,7 @@ const InComingCall = (props) => {
                 {/* decline call */}
                 <div onClick={()=> {
                     props?.setInComingCall(()=> false)
-                    socketState.emit("decline_call", {call_id: props?.call_id})
+                    socketState.emit("decline_call", {call_id: props?.call_id, idConversation: props?.idConversation})
 
                 }} className={"c-flex-center"} style={{flexDirection: 'column', cursor: "pointer"}}>
                     <div style={{width :40, height: 40, borderRadius: "50%", background: '#ff443d'}} className={"c-flex-center"}>
@@ -45,7 +47,7 @@ const InComingCall = (props) => {
                 {/* accept call */}
                 <div onClick={()=> {
                     props?.setInComingCall(()=> false)
-                    socketState.emit("accept_call", {call_id: props?.call_id})
+                    socketState.emit("accept_call", {call_id: props?.call_id, idConversation: props?.idConversation})
                 }} className={"c-flex-center"} style={{flexDirection: 'column', cursor: "pointer"}}>
                     <div style={{width :40, height: 40, borderRadius: "50%", background: "#31cc46"}} className={"c-flex-center"}>
                         <BsFillCameraVideoFill style={{color: "#fff", width: 24, height: 24}} />

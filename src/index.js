@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import './index.css';
 import "./a.sass"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-spring-bottom-sheet/dist/style.css'
 import { lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // import  { AliveScope, KeepAlive } from 'react-activation';

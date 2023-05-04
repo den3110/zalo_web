@@ -11,6 +11,7 @@ import Home from "./Component/Home/Home";
 import ForgotPassword from "./Component/ForgotPassword/ForgotPassword";
 import NotFound from "./Component/NotFound/NotFound";
 import Container from "./Component/Container/Container";
+import Admin from "./Component/Admin/Admin";
 // import KeepAlive from "react-activation";
 
 export function useIsMediaPath() {
@@ -59,7 +60,9 @@ const App = () => {
                   <Route path={"/*"} element={<Home />} />
                   <Route path={"/signup"} element={<Navigate to={"/"} />} />
                   <Route path={"/login"} element={<Navigate to={"/"} />} />
+                  <Route path={"/admin/*"} element={<Admin />} />
                   <Route path="*" element={<NotFound />} />
+                 
                 </>
               }
               {

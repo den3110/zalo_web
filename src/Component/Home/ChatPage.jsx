@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import get_files_conversation from "../../api/coversation/get_files_conversation";
 import get_info_detail_conversation from "../../api/coversation/get_info_detail_conversation";
 import { SocketContainerContext } from "../../SocketContainer/SocketContainer";
@@ -10,6 +10,7 @@ import MainChat from "../Chat/MainChat";
 import SearchAndList from "../SearchAndList/SearchAndList";
 import VideoCallComponent from "../VideoCall/VideoCall";
 // import VideoCallComponent from "../VideoCall/VideoCall";
+import { MobileView, isMobile } from 'react-device-detect';
 
 const ChatPage = () => {
   const { idConversation } = useParams();
@@ -20,6 +21,7 @@ const ChatPage = () => {
   const [callId, setCallId] = useState("");
   const [video, setVideo] = useState(false);
   const [audio, setAudio] = useState(false);
+  const navigate= useNavigate();
   const { socketState } = useContext(SocketContainerContext);
   useEffect(() => {
     socketState.emit("join_room_conversation", { roomId: idConversation });
@@ -34,8 +36,15 @@ const ChatPage = () => {
   }, [socketState]);
   useEffect(() => {
     socketState.on("accept_call_signal", (data) => {
+      if(isMobile=== true) {
+        setCallId(data?.call_id);
+        setIsCall(() => true);
+        return
+      }
       setCallId(data?.call_id);
-      setIsCall(() => true);
+        setIsCall(() => true);
+        navigate("/call/"+ data?.idConversation)
+    
     });
   }, [socketState]);
   useEffect(() => {

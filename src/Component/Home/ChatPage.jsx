@@ -39,11 +39,11 @@ const ChatPage = () => {
       if(isMobile=== true) {
         setCallId(data?.call_id);
         setIsCall(() => true);
+        navigate("/call/"+ data?.idConversation)
         return
       }
       setCallId(data?.call_id);
         setIsCall(() => true);
-        navigate("/call/"+ data?.idConversation)
     
     });
   }, [socketState]);

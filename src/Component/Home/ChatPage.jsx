@@ -10,7 +10,7 @@ import MainChat from "../Chat/MainChat";
 import SearchAndList from "../SearchAndList/SearchAndList";
 import VideoCallComponent from "../VideoCall/VideoCall";
 // import VideoCallComponent from "../VideoCall/VideoCall";
-import { MobileView, isMobile } from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 
 const ChatPage = () => {
   const { idConversation } = useParams();
@@ -42,8 +42,10 @@ const ChatPage = () => {
         navigate("/call/"+ data?.idConversation)
         return
       }
-      setCallId(data?.call_id);
+      else {
+        setCallId(data?.call_id);
         setIsCall(() => true);
+      }
     
     });
   }, [socketState]);

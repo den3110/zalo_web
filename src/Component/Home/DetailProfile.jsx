@@ -163,7 +163,7 @@ const AdvancedSettings= (props)=> {
                     deaf_user(!check)
                 }}     
             />
-            <label style={{marginLeft: 8}} htmlFor='cheese-status'>Chế độ giành cho người câm</label>
+            <label style={{marginLeft: 8}} htmlFor='cheese-status'>Chế độ giành cho người bệnh</label>
             </div>  
         </div>
     )

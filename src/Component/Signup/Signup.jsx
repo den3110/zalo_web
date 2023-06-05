@@ -59,7 +59,7 @@ const Signup = () => {
         {
           <>
             <div className={styles.register_title} style={{ marginBottom: 20, fontSize: 18 }}>
-              Đăng ký tài khoản Chat NPD <br></br>để kết nối với ứng dụng Chat NPD
+              Đăng ký tài khoản Zalo web <br></br>để kết nối với ứng dụng Zalo web
             </div>
             <div className={styles["formxx"]} action="#">
               {message === true && (

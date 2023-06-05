@@ -26,7 +26,7 @@ const Login = (props) => {
           <>
             <div className={styles.register_title} style={{ marginBottom: 20, fontSize: 18 }}>
               Đăng nhập tài khoản tin nhắn nhanh <br></br>để kết nối với ứng dụng tin nhắn nhanh
-              ChatNPD
+              Zalo web
             </div>
             <div className={styles["formxx"]} action="#">
               <div className={styles.register_form_input}>
